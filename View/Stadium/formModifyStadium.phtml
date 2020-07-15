@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/TeamRocket/Library/css/style.css">
+    <link rel="icon" href="/TeamRocket/Img/Src/favicon.ico" />
+    <title>Team Rocket - Modification d'un Stade</title>
+    <script type="text/javascript" src="/TeamRocket/Library/js/validStadiumform.js"></script>
+</head>
+
+<body>
+
+    <?php include_once 'View/Include/header.phtml'; ?>
+
+    <?php include_once 'View/Include/nav.phtml'; ?>
+
+    <main class="container-fluid">
+
+        <form id="form" action="index.php?modifyStadium" method="POST">
+
+            <legend>Formulaire de modification de stade</legend>
+
+            <div id="innerForm">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="Name">Nom <span class="star">*</span></label>
+                        <input type="text" name="Name" value="<?= $key['Nom_stade']; ?>" id="Name" class="form-control" pattern="^[A-Za-zÀ-ÿ0-9 '-_]{2,40}" required>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="Adress">Adresse <span class="star">*</span></label>
+                        <input type="text" name="Adress" value="<?= $key['Adresse']; ?>" id="Adress" class="form-control" pattern="^[A-Za-zÀ-ÿ0-9 '-_]{2,100}" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="TypeofTerrain">Type de Terrain</label>
+                        <select name="TypeofTerrain" class="form-control">
+                            <option value="Herbe" <?php if ($key['Type_de_terrain'] == "Herbe") echo 'selected'; ?>>Herbe</option>
+                            <option value="Synthétique" <?php if ($key['Type_de_terrain'] == "Synthétique") echo 'selected'; ?>>Synthétique</option>
+                            <option value="Stabilisé" <?php if ($key['Type_de_terrain'] == "Stabilisé") echo 'selected'; ?>>Stabilisé</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="Commentary">Commentaires</label>
+                        <textarea id="Commentary" name="Commentary" id="Commentary" class="form-control" rows="8" cols="33" pattern="^[A-Za-zÀ-ÿ0-9 '-_]{2,200}"><?= $key['Commentaires']; ?></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group text-center">
+                    <p>les champs <span class="star">*</span> sont obligatoires</p>
+                    <?php if (isset($_SESSION['error'])) : ?>
+                        <p class="error">Attention : <?php echo $_SESSION['error'];  ?></p>
+                        <?php $_SESSION['error'] = null;  ?>
+                    <?php endif ?>
+                    <p class="errorField"></p>
+                </div>
+
+                <input type="hidden" name="IdStadium" value="<?= $key['Id_stade'] ?>" />
+
+                <div class="form-group text-center">
+                    <div id="valiForm">
+                        <input type="submit" class="btn btn-primary buttonCustom" value="Modifier">
+                        <a href="./index.php?stadiumList" class="btn btn-primary buttonCustom">Retour</a>
+                    </div>
+                </div>
+            </div>
+            
+        </form>
+
+    </main>
+
+    <?php include_once 'View/Include/footer.phtml'; ?>
+
+</body>
+
+</html>

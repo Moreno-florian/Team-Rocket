@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/TeamRocket/Library/css/style.css">
+    <link rel="icon" href="/TeamRocket/Img/Src/favicon.ico" />
+    <title>Team Rocket - Liste des Stats</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script type="text/javascript" src="/TeamRocket/Library/js/stats.js"></script>
+</head>
+
+<body>
+
+    <?php include_once 'View/Include/header.phtml'; ?>
+
+    <?php include_once 'View/Include/nav.phtml'; ?>
+
+    <main>
+
+        <form action="#" method="post" id="statForm" class="form-inline justify-content-center">
+            <label for="Season" class="col-form-label mb-2 mr-sm-2">Saison</label>
+            <select name="Season" class="form-control mb-2 mr-sm-2">
+                <?php for ($season = 2019; $season < (date("Y") + 2); $season++) : ?>
+                    <option value="<?= $season ?>/<?= $season + 1 ?>" <?php if (isset($_POST['Season']) && $_POST['Season'] == $season . "/" . ($season + 1)) echo 'selected'; ?>><?= $season ?>/<?= $season + 1 ?></option>
+                <?php endfor ?>
+            </select>
+
+            <input type="submit" value="Valider" class="btn btn-primary mb-2 mr-sm-2">
+        </form>
+
+        <div id="mystat">
+            <input type="hidden" id="goal" value="<?php echo $goal; ?>">
+            <input type="hidden" id="pass" value="<?php echo $pass; ?>">
+            <input type="hidden" id="time" value="<?php echo $time; ?>">
+            <input type="hidden" id="presence" value="<?php echo $presence; ?>">
+
+            <div class="chart-container">
+                <canvas class="Statistiques" id="statsGoalPass" width="700" height="600"> </canvas>
+            </div>
+
+            <div class="chart-container">
+                <canvas class="Statistiques" id="statsTimePresence" width="700" height="600"></canvas>
+            </div>
+
+        </div>
+    </main>
+
+    <?php include_once 'View/Include/footer.phtml'; ?>
+
+</body>
+
+</html>

@@ -1,0 +1,604 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #f6f0e6;
+}
+
+header, footer {
+  background: #1C6EA4;
+  background: -moz-linear-gradient(top, #1C6EA4 0%, #002073 100%);
+  background: -webkit-linear-gradient(top, #1C6EA4 0%, #002073 100%);
+  background: linear-gradient(to bottom, #1C6EA4 0%, #002073 100%);
+  color: white;
+}
+
+.hidden {
+  background: none;
+  border: none;
+}
+
+/********************************************** Header **********************************************/
+
+header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 30px;
+}
+
+header h1 {
+  text-align: center;
+  margin-top: 10px;
+}
+
+#logo {
+  width: 150px;
+  border-radius: 100px;
+}
+
+#logo:hover {
+  -webkit-animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  -webkit-box-shadow: 4px -4px 15px 0px #FF1F1F, 12px -11px 7px 0px #FF9376, 20px -5px 7px 0px #FFE264, 20px 6px 7px 0px #F6FF33, 13px 12px 17px 0px #FF9527, 2px 17px 17px 0px #FF0000, -9px 21px 18px 0px #FFF212, -9px 6px 11px 0px #FF0808, -11px -9px 11px 0px #FFFA17, -11px -9px 11px 0px #FFFA17, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  box-shadow: 4px -4px 15px 0px #FF1F1F, 12px -11px 7px 0px #FF9376, 20px -5px 7px 0px #FFE264, 20px 6px 7px 0px #F6FF33, 13px 12px 17px 0px #FF9527, 2px 17px 17px 0px #FF0000, -9px 21px 18px 0px #FFF212, -9px 6px 11px 0px #FF0808, -11px -9px 11px 0px #FFFA17, -11px -9px 11px 0px #FFFA17, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  transition: box-shadow 0.2s;
+}
+
+#myProfilePicture {
+  max-height: 150px;
+  border: 10px groove #818181;
+  -webkit-box-shadow: 5px 5px 15px 5px #000000;
+  box-shadow: 5px 5px 15px 5px #000000;
+}
+
+.gestAccount {
+  border: solid 1px white;
+  padding-left: 7%;
+  padding-right: 7%;
+  width: 207px;
+}
+
+.gestAccount legend {
+  width: 90%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btnWidth {
+  width: 48.8%;
+  margin-bottom: 0;
+}
+
+.btnWidth2 {
+  width: 100%;
+}
+
+.content {
+  text-align: center;
+}
+
+header div .error {
+  margin: 0;
+  color: rgb(255, 71, 71);
+  font-weight: bold;
+  width: 207px;
+  text-align: center;
+  font-style: normal;
+}
+
+/********************************************** Nav **********************************************/
+
+nav {
+  background-color: #002073;
+}
+
+nav a, nav div a {
+  display: block;
+  color: white;
+  width: 200px;
+  line-height: 2em;
+  text-align: center;
+  text-decoration: none;
+  padding: 4px 0;
+}
+
+nav a:hover {
+  background-color: #1C6EA4;
+  text-decoration: none;
+  color: white;
+  font-weight: bolder;
+  transition: background-color 0.5s;
+}
+
+/********************************************** Main **********************************************/
+
+main {
+  min-height: 80vh;
+}
+
+h2 {
+  font-size: 25px;
+}
+
+/****************** Home page ******************/
+
+#home {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+#presentation {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  border: solid 5px #002073;
+  background-color: white;
+  border-radius: 20px;
+}
+
+#presentation h2 {
+  width: 100%;
+  background-color: #002073;
+  text-align: center;
+  color: white;
+  padding: 1%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+#presentation p {
+  padding: 1%;
+  text-align: center;
+}
+
+section {
+  flex: 11;
+}
+
+aside {
+  flex: 1;
+}
+
+.matchHome {
+  border: solid 5px #002073;
+  background-color: white;
+  margin-right: 1%;
+  align-items: center;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.matchHome h2 {
+  width: 100%;
+  background-color: #002073;
+  text-align: center;
+  color: white;
+  padding: 1%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.matchHome table {
+  margin: auto;
+  margin-bottom: 1%;
+}
+
+/****************** Stats page *****************/
+
+.chart-container {
+  margin: auto;
+  background-color: white;
+}
+
+#mystat {
+  display: flex;
+}
+
+#statForm {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+/********************************************** Form **********************************************/
+
+main form legend {
+  background-color: #002073;
+  text-align: center;
+  margin-bottom: 5%;
+  color: white;
+  padding: 2%;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+#form {
+  margin: auto;
+  border: solid 5px #002073;
+  background-color: white;
+  width: 60%;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border-radius: 20px;
+}
+
+#innerForm {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.buttonCustom {
+  width: 30%;
+}
+
+.errorPassword, .errorPicture, .errorPseudo, .errorField, .error, .star {
+  margin-bottom: 0;
+  color: red;
+  font-style: italic;
+}
+
+/********************************************** Table **********************************************/
+
+table {
+  width: 98%;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: #002073;
+  color: white;
+  height: 40px;
+}
+
+tr {
+  background-color: white;
+}
+
+tr:nth-child(2n) {
+  background-color: #dbe8ff;
+}
+
+.tButton, .tableBtn {
+  width: 120px;
+}
+
+/********************************************** List **********************************************/
+
+#list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border-radius: 20px;
+}
+
+#list a {
+  margin: 1%;
+}
+
+#list h2 {
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: #002073;
+  text-align: center;
+  color: white;
+  padding: 1%;
+}
+
+.userList, .stadiumList, .rivalTeamList, .matchList, .topGoalList {
+  border: solid 5px #002073;
+  background-color: white;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/*************** Users List page ***************/
+
+.userList {
+  width: 100%;
+}
+
+.playersProfilePicture {
+  height: 100px;
+}
+
+.pictureProfileList {
+  width: 50px;
+  margin: 0;
+}
+
+/************** Stadium List page **************/
+
+.stadiumList {
+  width: 100%;
+}
+
+.stadiumAdress {
+  width: 250px;
+}
+
+.commentary {
+  width: 500px;
+}
+
+/************* Rival team List page ************/
+
+.rivalTeamList {
+  width: 50%;
+}
+
+/************** Stadium List page **************/
+
+.matchList {
+  width: 100%;
+}
+
+/************* Gallery / Team Page **************/
+
+#listTeam, #listPicture {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 0px;
+}
+
+/******************* Team Page *******************/
+
+.Players {
+  border: solid 5px #002073;
+  background-color: white;
+  width: 340px;
+  height: 450px;
+  margin-bottom: 30px;
+  padding-bottom: 50px;
+  margin: 10px;
+  border-radius: 20px;
+}
+
+.Players h3 {
+  background-color: #002073;
+  color: white;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 50px;
+  font-size: 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.Players p {
+  margin: 0;
+}
+
+.Players img {
+  max-width: 200px;
+  margin-bottom: 20px;
+}
+
+/****************** Gallery Page ******************/
+
+#listPicture input {
+  width: 100px;
+}
+
+.galleryButton, .galleryButton form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.galleryButton input[type=submit] {
+  margin-left: 1px;
+  margin-right: 1px;
+}
+
+.pictureGallery {
+  width: 500px;
+  margin-bottom: 30px;
+}
+
+.pictureGallery img {
+  max-height: 500px;
+  margin-bottom: 30px;
+}
+
+.imgGallery {
+  max-width: 400px;
+}
+
+/****************** Top list Page *****************/
+
+.topGoalList {
+  width: 70%;
+  padding-bottom: 20px;
+}
+
+.topGoalList table td {
+  width: 300px;
+}
+
+.ranking {
+  width: 100px;
+}
+
+/********************************************** Footer **********************************************/
+
+footer {
+  width: 100%;
+  height: max-content;
+  padding-top: 20px;
+  bottom: 0;
+  margin-top: 10px;
+}
+
+footer h6 {
+  font-weight: bold;
+}
+
+#copyright {
+  text-align: center;
+  font-weight: bold;
+}
+
+#workTeam {
+  display: flex;
+  justify-content: space-around;
+}
+
+/************************************ Responsive less 992px screen **********************************/
+
+@media screen and (max-width: 992px) {
+  .toHidden {
+    display: none;
+  }
+  a {
+    align-items: center;
+    text-align: center;
+    width: 90%;
+    font-size: 40px;
+  }
+  /********************* header *********************/
+  header {
+    display: flex;
+    flex-direction: column;
+  }
+  #logo {
+    width: 85px;
+    margin-bottom: 10px;
+    position: absolute;
+    left: 40px;
+  }
+  #myProfilePicture {
+    max-height: 100px;
+  }
+  h1 {
+    font-size: 30px;
+  }
+  #btnAccount {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+  /*********************** nav **********************/
+  nav {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+  nav a {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    font-size: 40px;
+  }
+  /*********************** main *********************/
+  aside {
+    display: none;
+  }
+  #listTeam {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  .Players {
+    width: 400px;
+    margin-bottom: 20px;
+  }
+  .Players h3 {
+    margin-bottom: 5%;
+  }
+  #form {
+    width: 95%;
+  }
+  /********************** stats *********************/
+  .chart-container {
+    width: 100% !important;
+    margin: auto;
+    background-color: white;
+  }
+  #mystat {
+    display: flex;
+    flex-direction: column;
+  }
+  /********************** table *********************/
+  tr {
+    padding-top: 45px;
+    padding-bottom: 50px;
+    padding-right: 20px;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+  td {
+    margin-top: 15px;
+    font-size: 40px;
+  }
+  .pictureProfileList {
+    width: 100%;
+  }
+  .playersProfilePicture {
+    min-height: 200px;
+  }
+  .stadiumAdress {
+    width: 100%;
+  }
+  .commentary {
+    width: 100%;
+  }
+  .tButton {
+    width: 100%;
+  }
+  .tableBtn {
+    font-size: 40px;
+    width: 100%;
+  }
+  .topGoalList table td {
+    width: 100%;
+  }
+  /********************** footer ********************/
+  #workTeam {
+    display: flex;
+    flex-direction: column;
+  }
+  #dev {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/********************************* Responsive less 600px screen *********************/
+
+@media screen and (max-width: 600px) {
+  header {
+    display: flex;
+    flex-direction: column;
+  }
+  #logo {
+    width: 85px;
+    margin-bottom: 50px;
+    left: auto;
+    right: auto;
+    position: relative;
+  }
+}

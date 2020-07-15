@@ -1,0 +1,20 @@
+<nav class="nav justify-content-center">
+
+    <a class="nav-link" href="index.php?team">L'équipe</a>
+    <a class="nav-link" href="index.php?topList">Top 10</a>
+    <a class="nav-link" href="index.php?gallery">Galerie photo</a>
+
+    <?php if (isset($_SESSION['Role']) and ($_SESSION['Role'] == "Administrateur" or $_SESSION['Role'] == "Modérateur" or $_SESSION['Role'] == "Utilisateur")) : ?>
+
+        <a class="nav-link" href="index.php?statList">Mes statistiques</a>
+        
+    <?php endif ?>
+
+    <?php if (isset($_SESSION['Role']) and ($_SESSION['Role'] == "Administrateur" or $_SESSION['Role'] == "Modérateur")) : ?>
+        <a class="nav-link" href="index.php?userList">Liste Joueurs</a>
+        <a class="nav-link" href="index.php?stadiumList">Liste Stades</a>
+        <a class="nav-link" href="index.php?rivalTeamList">Liste équipes adverses</a>
+        <a class="nav-link" href="index.php?matchList">Liste matchs</a>
+    <?php endif ?>
+
+</nav>

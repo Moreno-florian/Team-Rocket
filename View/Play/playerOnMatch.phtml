@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/TeamRocket/Library/css/style.css">
+    <link rel="icon" href="/TeamRocket/Img/Src/favicon.ico" />
+    <title>Team Rocket - Liste des inscrits </title>
+</head>
+
+<body>
+
+    <?php include_once 'View/Include/header.phtml'; ?>
+
+    <?php include_once 'View/Include/nav.phtml'; ?>
+
+    <main class="container-fluid">
+
+        <div id="list">
+
+            <h2>Inscrits pour le match du <?= $player['trueDate']; ?> à <?= $player['Heure']; ?> contre <?= $player['Nom_equipe']; ?></h2>
+
+            <table>
+
+                <tr class="toHidden">
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Poste</th>
+                    <th>N° de licence</th>
+                    <th>Buts</th>
+                    <th>Passes décisives</th>
+                    <th>Temps joué</th>
+                    <th class="tButton" colspan="2"></th>
+                </tr>
+
+                <?php foreach ($list as $player) : ?>
+                    <tr>
+                        <td><?= $player['Prenom']; ?></td>
+                        <td><?= $player['Nom']; ?></td>
+                        <td><?= $player['Poste']; ?></td>
+                        <td><?= $player['Numero_de_licence']; ?></td>
+                        <td><?= $player['But_marque_par_match']; ?></td>
+                        <td><?= $player['Passe_decisive_par_match']; ?></td>
+                        <td><?= $player['Temps_joue_par_match']; ?></td>
+                        <td class="tButton">
+                            <form action="index.php?playerModifyRegistrationForm" method="post">
+                                <input type="hidden" name="IdPlayer" value="<?= $player['Id_joueur'] ?>" />
+                                <input type="hidden" name="IdMatch" value="<?= $player['Id_match'] ?>" />
+                                <input type="hidden" name="IdRivalteam" value="<?= $player['Id_equipe_adverse'] ?>" />
+                                <input type="submit" value="Modifier" class="btn btn-primary btn-sm tableBtn" />
+                            </form>
+                        </td>
+                        <td class="tButton">
+                            <form action="index.php?matchUnsubscribe" method="post">
+                                <input type="hidden" name="IdPlayer" value="<?= $player['Id_joueur'] ?>" />
+                                <input type="hidden" name="IdMatch" value="<?= $player['Id_match'] ?>" />
+                                <input type="hidden" name="IdRivalteam" value="<?= $player['Id_equipe_adverse'] ?>" />
+                                <input type="submit" value="Supprimer" onclick="if (window.confirm('Vous êtes sûr ?')) {return true;} else {return false;}" class="btn btn-danger btn-sm tableBtn" />
+                            </form>
+                        </td>
+                    </tr>
+                <?php endforeach ?>
+
+                <tr class="toHidden">
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Poste</th>
+                    <th>N° de licence</th>
+                    <th>Buts</th>
+                    <th>Passes décisives</th>
+                    <th>Temps joué</th>
+                    <th class="tButton" colspan="2"></th>
+                </tr>
+
+            </table>
+
+
+        </div>
+        </div>
+    </main>
+
+    <?php include_once 'View/Include/footer.phtml'; ?>
+
+</body>
+
+</html>

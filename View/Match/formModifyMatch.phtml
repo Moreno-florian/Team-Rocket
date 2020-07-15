@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/TeamRocket/Library/css/style.css">
+    <link rel="icon" href="/TeamRocket/Img/Src/favicon.ico" />
+    <title>Team Rocket - Modification d'un match</title>
+    <script type="text/javascript" src="/TeamRocket/Library/js/validMatchForm.js"></script>
+</head>
+
+<body>
+
+    <?php include_once 'View/Include/header.phtml'; ?>
+
+    <?php include_once 'View/Include/nav.phtml'; ?>
+
+    <main class="container-fluid">
+
+        <form id="form" action="index.php?modifyMatch" method="POST">
+
+            <legend>Formulaire de modification de match</legend>
+
+            <div id="innerForm">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="Date">Date du match <span class="star">*</span></label>
+                        <input type="date" name="Date" value="<?= $key['Date']; ?>" id="Date" class="form-control" required>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="Season">Saison</label>
+                        <select name="Season" class="form-control">
+                            <?php for ($season = (date("Y") - 1); $season < (date("Y") + 2); $season++) : ?>
+                                <option value="<?= $season ?>/<?= $season + 1 ?>" <?php if ($key['Saison'] == $season . "/" . ($season + 1)) echo 'selected'; ?>><?= $season ?>/<?= $season + 1 ?></option>
+                            <?php endfor ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="Hours">Heure du match <span class="star">*</span></label>
+                        <input type="time" name="Hours" value="<?= $key['Heure'] ?>" id="Hours" class="form-control" required>
+                    </div>
+                </div>
+
+                
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="RivalTeam">Equipe rencontrée</label>
+                        <select name="Rivalteam" class="form-control">
+                            <?php foreach ($rivalTeamList as $rivalTeam) : ?>
+                                <option value="<?= $rivalTeam['Id_equipe_adverse']; ?>" <?php if ($rivalTeam['Id_equipe_adverse'] == $key['Id_equipe_adverse']) echo 'selected' ?>><?= $rivalTeam['Nom_equipe']; ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="Stadium">Stade</label>
+                        <select name="Stadium" class="form-control">
+                            <?php foreach ($stadiumList as $stadium) : ?>
+                                <option value="<?= $stadium['Id_stade']; ?>" <?php if ($stadium['Id_stade'] == $key['Id_stade']) echo 'selected' ?>><?= $stadium['Nom_stade']; ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group text-center">
+                    <p>les champs <span class="star">*</span> sont obligatoires</p>
+                    <?php if (isset($_SESSION['error'])) : ?>
+                        <p class="error">Attention : <?php echo $_SESSION['error'];  ?></p>
+                        <?php $_SESSION['error'] = null;  ?>
+                    <?php endif ?>
+                    <p class="errorField"></p>
+                </div>
+
+                <input type="hidden" name="Match" value="<?= $key['Id_match']; ?>" />
+
+                <div class="form-group text-center">
+                    <div id="valiForm">
+                        <input type="submit" value="Valider" class="btn btn-primary buttonCustom">
+                        <a href="index.php?matchList" class="btn btn-primary buttonCustom">Retour</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </main>
+
+    <?php include_once 'View/Include/footer.phtml'; ?>
+
+</body>
+
+</html>

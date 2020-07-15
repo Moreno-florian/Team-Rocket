@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/TeamRocket/Library/css/style.css">
+    <link rel="icon" href="/TeamRocket/Img/Src/favicon.ico" />
+    <title>Team Rocket - Modification d'une photo</title>
+    <script type="text/javascript" src="/TeamRocket/Library/js/validModifyGallery.js"></script>
+</head>
+
+<body>
+
+    <?php include_once 'View/Include/header.phtml'; ?>
+
+    <?php include_once 'View/Include/nav.phtml'; ?>
+
+    <main class="container-fluid">
+
+        <form id="form" action="index.php?modifyPicture" method="POST" enctype="multipart/form-data">
+
+            <legend>Formulaire de modification de Photo</legend>
+
+            <div id="innerForm">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="Title">Titre de la photo <span class="star">*</span></label>
+                        <input type="text" name="Title" value="<?= $key['Titre'] ?>" id="Title" class="form-control" pattern="[A-Za-z1-9 '-]{2-30}" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <input type="hidden" name="MAX_FILE_SIZE" value="10000000" />
+                        <label for="Picture">Photo <span class="star">(à laisser vide si vous ne voulez pas changer la photo)</span></label>
+                        <input type="file" name="Picture" id="Picture" class="form-control" accept="image/png, image/jpeg">
+                    </div>
+                </div>
+
+                <input type="hidden" name="IdPicture" value="<?= $key['Id_photo'] ?>" />
+                <input type="hidden" name="OldPicture" value="<?= $key['Url_photo'] ?>" />
+
+                <div class="form-group text-center">
+                    <?php if (isset($_SESSION['error'])) : ?>
+                        <p class="error">Attention : <?php echo $_SESSION['error'];  ?></p>
+                        <?php $_SESSION['error'] = null;  ?>
+                    <?php endif ?>
+                    <p class="errorField"></p>
+                    <p class="errorPicture"></p>
+                </div>
+
+                <div class="form-group text-center">
+                    <div id="valiForm">
+                        <input type="submit" value="Modifier" class="btn btn-primary buttonCustom">
+                        <a href="./index.php?gallery" class="btn btn-primary buttonCustom">Retour</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </main>
+
+    <?php include_once 'View/Include/footer.phtml'; ?>
+
+</body>
+
+</html>

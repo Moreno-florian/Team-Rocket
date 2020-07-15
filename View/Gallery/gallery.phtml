@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/TeamRocket/Library/css/style.css">
+    <link rel="icon" href="/TeamRocket/Img/Src/favicon.ico" />
+    <title>Team Rocket - Galerie photo</title>
+</head>
+
+<body>
+
+    <?php include_once 'View/Include/header.phtml'; ?>
+
+    <?php include_once 'View/Include/nav.phtml'; ?>
+
+    <main class="container-fluid">
+        <div id="list">
+            <?php if (isset($_SESSION['Role']) and ($_SESSION['Role'] == "Administrateur" or $_SESSION['Role'] == "Modérateur")) : ?>
+                <a href="index.php?formAddPicture" class="btn btn-primary btn-lg">Ajouter une photo</a>
+            <?php endif ?>
+
+            <div id="listPicture">
+
+                <?php foreach ($list as $picture) : ?>
+                    <div class="pictureGallery">
+                        <img class="imgGallery" src="<?= $picture['Url_photo']; ?>" alt="Pas de photo">
+                        <p>Titre : <?= $picture['Titre']; ?></p>
+                        <p>Date de publication : <?= $picture['trueDate']; ?></p>
+                        <p>Posté par : <?= $picture['Pseudo']; ?></p>
+
+                        <?php if (isset($_SESSION['Role']) and ($_SESSION['Role'] == "Administrateur" or $_SESSION['Role'] == "Modérateur")) : ?>
+                            <div class="galleryButton">
+                                <form action="index.php?formModifyPicture" method="post">
+                                    <input type="hidden" name="IdPicture" value="<?= $picture['Id_photo'] ?>" />
+                                    <input type="hidden" name="UrlPicture" value="<?= $picture['Url_photo'] ?>" />
+                                    <input type="submit" value="Modifier" class="btn btn-primary btn-sm"/>
+                                </form>
+
+                                <form action="index.php?deletePicture" method="post">
+                                    <input type="hidden" name="IdPicture" value="<?= $picture['Id_photo'] ?>" />
+                                    <input type="hidden" name="UrlPicture" value="<?= $picture['Url_photo'] ?>" />
+                                    <input type="submit" value="Supprimer" onclick="if (window.confirm('Vous êtes sûr ?')) {return true;} else {return false;}" class="btn btn-danger btn-sm" />
+                                </form>
+                            </div>
+                        <?php endif ?>
+
+                    </div>
+                <?php endforeach ?>
+
+                <?php if (!isset($picture['Titre'])) : ?>
+                    <h3>Pas de photo actuellement.</h3>
+                <?php endif ?>
+
+            </div>
+
+            <?php if (isset($picture['Titre']) and isset($_SESSION['Role']) and ($_SESSION['Role'] == "Administrateur" or $_SESSION['Role'] == "Modérateur")) : ?>
+                <a href="index.php?formAddPicture" class="btn btn-primary btn-lg">Ajouter une photo</a>
+            <?php endif ?>
+
+        </div>
+    </main>
+
+    <?php include_once 'View/Include/footer.phtml'; ?>
+
+</body>
+
+</html>

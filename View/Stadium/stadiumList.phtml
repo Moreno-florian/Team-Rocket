@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/TeamRocket/Library/css/style.css">
+    <link rel="icon" href="/TeamRocket/Img/Src/favicon.ico" />
+    <title>Team Rocket - Liste des Stades</title>
+</head>
+
+<body>
+
+    <?php include_once 'View/Include/header.phtml'; ?>
+
+    <?php include_once 'View/Include/nav.phtml'; ?>
+
+    <main class="container-fluid">
+
+        <div id="list" class="stadiumList">
+
+            <h2>Liste des stades</h2>
+
+            <a href="index.php?formAddStadium" class="btn btn-primary btn-lg">Ajouter un Stade</a>
+
+            <table>
+                <tr class="toHidden">
+                    <th>Nom</th>
+                    <th>Adresse</th>
+                    <th>Type de terrain</th>
+                    <th>Commentaires</th>
+                    <th class="tButton" colspan="2"></th>
+                </tr>
+
+                <?php foreach ($list as $stadium) : ?>
+                    <tr>
+                        <td> <?= $stadium['Nom_stade']; ?> </td>
+                        <td> <?= $stadium['Adresse']; ?> </td>
+                        <td> <?= $stadium['Type_de_terrain']; ?> </td>
+                        <td class="commentary"> <?= $stadium['Commentaires']; ?> </td>
+                        <td class="tButton">
+                            <form action="index.php?formModifyStadium" method="post">
+                                <input type="hidden" name="IdStadium" value="<?= $stadium['Id_stade'] ?>" />
+                                <input type="submit" value="Modifier" class="btn btn-primary btn-sm tableBtn" />
+                            </form>
+                        </td>
+                        <td class="tButton">
+                            <form action="index.php?deleteStadium" method="post">
+                                <input type="hidden" name="IdStadium" value="<?= $stadium['Id_stade'] ?>" />
+                                <input type="submit" value="Supprimer" onclick="if (window.confirm('Vous êtes sûr ?')) {return true;} else {return false;}" class="btn btn-danger btn-sm tableBtn" />
+                            </form>
+                        </td>
+                    </tr>
+                <?php endforeach ?>
+                <tr class="toHidden">
+                    <th>Nom</th>
+                    <th>Adresse</th>
+                    <th>Type de terrain</th>
+                    <th>Commentaires</th>
+                    <th class="tButton" colspan="2"></th>
+                </tr>
+            </table>
+
+            <a href="index.php?formAddStadium" class="btn btn-primary btn-lg">Ajouter un Stade</a>
+
+        </div>
+
+    </main>
+
+    <?php include_once 'View/Include/footer.phtml'; ?>
+
+</body>
+
+</html>

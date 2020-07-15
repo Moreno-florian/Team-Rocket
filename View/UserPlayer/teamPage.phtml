@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/TeamRocket/Library/css/style.css">
+    <link rel="icon" href="/TeamRocket/Img/Src/favicon.ico" />
+    <title>Team Rocket - Liste des joueurs</title>
+</head>
+
+<body>
+
+    <?php include_once 'View/Include/header.phtml'; ?>
+
+    <?php include_once 'View/Include/nav.phtml'; ?>
+
+    <main class="container-fluid">
+        <div id="list">
+            <div id="listTeam">
+
+                <?php foreach ($list as $player) : ?>
+                    <div class="Players">
+                        <h3><?= $player['Prenom']; ?> <?= $player['Nom']; ?></h3>
+                        <img src="<?= $player['Photo']; ?>" alt="Photo introuvable">
+                        <p>Alias : <?= $player['Pseudo']; ?></p>
+                        <p>Poste principal : <?= $player['Poste_principal']; ?></p>
+                        <p>N° de licence : <?= $player['Numero_de_licence']; ?></p>
+                        <p>Annee d'arrivée : <?= $player['trueDate']; ?></p>
+                    </div>
+                <?php endforeach ?>
+                
+            </div>
+        </div>
+    </main>
+
+    <?php include_once 'View/Include/footer.phtml'; ?>
+
+</body>
+
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/TeamRocket/Library/css/style.css">
+    <link rel="icon" href="/TeamRocket/Img/Src/favicon.ico" />
+    <title>Team Rocket - Modifier le compte</title>
+    <script type="text/javascript" src="/TeamRocket/Library/js/validUserForm.js"></script>
+</head>
+
+<body>
+
+    <?php include_once 'View/Include/header.phtml'; ?>
+
+    <?php include_once 'View/Include/nav.phtml'; ?>
+
+    <main class="container-fluid">
+
+        <form id="form" enctype="multipart/form-data" action="index.php?modifyUser" method="POST">
+
+            <legend>Formulaire de modification de compte</legend>
+            <div id="innerForm">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="Lastname">Nom <span class="star">*</span></label>
+                        <input type="text" name="Lastname" value="<?= $key['Nom']; ?>" id="Lastname" class="form-control" pattern="^[A-Za-zÀ-ÿ ]{2,25}" required>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="Firstname">Prénom <span class="star">*</span></label>
+                        <input type="text" name="Firstname" value="<?= $key['Prenom']; ?>" id="Firstname" class="form-control" pattern="^[A-Za-zÀ-ÿ ]{2,25}" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="PseudoUser">Pseudo <span class="star">*</span></label>
+                        <input type="text" name="PseudoUser" value="<?= $key['Pseudo']; ?>" id="PseudoUser" class="form-control" pattern="[A-Za-z0-9 ]{2,20}" required>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="Mail">Email <span class="star">*</span></label>
+                        <input type="email" name="Mail" value="<?= $key['Mail']; ?>" id="Mail" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="PasswordUser">Mot de passe <span class="star">*</span></label>
+                        <input type="password"  name="PasswordUser" id="PasswordUser" class="form-control" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" placeholder="Au moins 1 majuscule, 1 minuscule et 1 nombre" required>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="PasswordValid">Confirmer le mot de passe <span class="star">*</span></label>
+                        <input type="password"  name="PasswordValid" id="PasswordValid" class="form-control" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" placeholder="Au moins 1 majuscule, 1 minuscule et 1 nombre" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="ArrivalYear">Année d'arrivée</label>
+                        <input type="date" value="<?= $key['Annee_d_arrivee']; ?>" name="ArrivalYear" id="ArrivalYear" class="form-control">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="LicenseNumber">N° de License</label>
+                        <input type="number" value="<?= $key['Numero_de_licence']; ?>" name="LicenseNumber" id="LicenseNumber" class="form-control" min="0" max="9999999999">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <input type="hidden" name="MAX_FILE_SIZE" value="10000000" />
+                        <label for="Picture">Photo de profil <span class="star">(à laisser vide si vous ne voulez pas changer la photo)</span></label>
+                        <input type="file" value="<?= $key['Photo']; ?>" id="Picture" class="form-control" name="Picture" accept="image/png, image/jpeg">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="Position">Poste souhaité</label>
+                        <select name="Position" class="form-control">
+                            <option value="Attaquant" <?php if ($key['Poste_principal'] == "Attaquant") echo 'selected'; ?>>Attaquant</option>
+                            <option value="Milieu" <?php if ($key['Poste_principal'] == "Milieu") echo 'selected'; ?>>Milieu</option>
+                            <option value="Défenseur" <?php if ($key['Poste_principal'] == "Défenseur") echo 'selected'; ?>>Défenseur</option>
+                            <option value="Gardien" <?php if ($key['Poste_principal'] == "Gardien") echo 'selected'; ?>>Gardien</option>
+                        </select>
+                    </div>
+                </div>
+
+                <input type="hidden" name="userId" value="<?= $key['Id_utilisateur']; ?>" />
+                <input type="hidden" name="playerId" value="<?= $key['Id_joueur']; ?>" />
+                <input type="hidden" name="oldPicture" value="<?= $key['Photo'] ?>" />
+
+                <?php if (isset($_SESSION['Role']) and $_SESSION['Role'] == "Administrateur") : ?>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="Role">Rôle <span class="star">(à ne pas changer pour l'administrateur)</span></label>
+                            <select name="Role" class="form-control">
+                                <option value="Utilisateur" <?php if ($key['Role'] == "Utilisateur") echo 'selected'; ?>>Utilisateur</option>
+                                <option value="Modérateur" <?php if ($key['Role'] == "Modérateur") echo 'selected'; ?>>Modérateur</option>
+                                <option value="Administrateur" <?php if ($key['Role'] == "Administrateur") echo 'selected'; ?>>Administrateur</option>
+                            </select>
+                        </div>
+                    </div>
+                <?php endif ?>
+
+                <div class="form-group text-center">
+                    <p>les champs <span class="star">*</span> sont obligatoires</p>
+                    <?php if (isset($_SESSION['error'])) : ?>
+                        <p class="error">Attention : <?php echo $_SESSION['error'];  ?></p>
+                        <?php $_SESSION['error'] = null;  ?>
+                    <?php endif ?>
+                    <p class="errorField"></p>
+                    <p class="errorPicture"></p>
+                </div>
+
+                <div class="form-group text-center">
+                    <div id="valiForm">
+                        <input type="submit" value="Modifier" class="btn btn-primary buttonCustom">
+                        <a href="index.php?userList" class="btn btn-primary buttonCustom">Retour</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </main>
+
+    <?php include_once 'View/Include/footer.phtml'; ?>
+
+</body>
+
+</html>

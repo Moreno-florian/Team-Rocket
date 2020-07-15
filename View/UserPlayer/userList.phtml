@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/TeamRocket/Library/css/style.css">
+    <link rel="icon" href="/TeamRocket/Img/Src/favicon.ico" />
+    <title>Team Rocket - Liste des joueurs</title>
+</head>
+
+<body>
+
+    <?php include_once 'View/Include/header.phtml'; ?>
+
+    <?php include_once 'View/Include/nav.phtml'; ?>
+
+    <main class="container-fluid">
+
+        <div id="list" class="userList">
+
+            <h2>Liste des Joueurs</h2>
+
+            <a href="index.php?createAccount" class="btn btn-primary btn-lg">Ajouter un Joueur</a>
+
+            <table>
+                <tr class="toHidden">
+                    <th class="pictureProfileList"></th>
+                    <th>Pseudo</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Mail</th>
+                    <th>Role</th>
+                    <th>Poste principal</th>
+                    <th>N° de licence</th>
+                    <th>Date d'arrivée</th>
+                    <th class="tButton" colspan="2"></th>
+                </tr>
+
+                <?php foreach ($list as $player) : ?>
+                    <tr>
+                        <td class="pictureProfileList"> <img class="playersProfilePicture" src="<?= $player['Photo']; ?>" alt="Photo introuvable"> </td>
+                        <td> <?= $player['Pseudo']; ?> </td>
+                        <td> <?= $player['Nom']; ?> </td>
+                        <td> <?= $player['Prenom']; ?> </td>
+                        <td> <?= $player['Mail']; ?> </td>
+                        <td> <?= $player['Role']; ?> </td>
+                        <td> <?= $player['Poste_principal']; ?> </td>
+                        <td> <?= $player['Numero_de_licence']; ?> </td>
+                        <td> <?= $player['trueDate']; ?> </td>
+                        <td class="tButton">
+                            <form action="index.php?modifyAccount" method="post">
+                                <input type="hidden" name="userId" value="<?= $player['Id_utilisateur'] ?>" />
+                                <input type="hidden" name="playerId" value="<?= $player['Id_joueur'] ?>" />
+                                <input type="submit" value="Modifier" class="btn btn-primary btn-sm tableBtn" />
+                            </form>
+                        </td>
+                        <?php if (isset($_SESSION['Role']) and $_SESSION['Role'] == "Administrateur") : ?>
+                            <td class="tButton">
+                                <form action="index.php?removeUser" method="post">
+                                    <input type="hidden" name="userId" value="<?= $player['Id_utilisateur'] ?>" />
+                                    <input type="hidden" name="playerId" value="<?= $player['Id_joueur'] ?>" />
+                                    <input type="hidden" name="Picture" value="<?= $player['Photo'] ?>" />
+                                    <input type="submit" value="Supprimer" onclick="if (window.confirm('Vous êtes sûr ?')) {return true;} else {return false;}" class="btn btn-danger btn-sm tableBtn" />
+                                </form>
+                            </td>
+                        <?php endif ?>
+                    </tr>
+                <?php endforeach ?>
+                <tr class="toHidden">
+                    <th class="pictureProfileList"></th>
+                    <th>Pseudo</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Mail</th>
+                    <th>Role</th>
+                    <th>Poste principal</th>
+                    <th>N° de licence</th>
+                    <th>Date d'arrivée</th>
+                    <th class="tButton" colspan="2"></th>
+                </tr>
+            </table>
+
+            <a href="index.php?createAccount" class="btn btn-primary btn-lg">Ajouter un Joueur</a>
+
+        </div>
+    </main>
+
+    <?php include_once 'View/Include/footer.phtml'; ?>
+
+</body>
+
+</html>

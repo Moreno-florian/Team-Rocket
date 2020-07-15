@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/TeamRocket/Library/css/style.css">
+    <link rel="icon" href="/TeamRocket/Img/Src/favicon.ico" />
+    <title>Team Rocket - Modifier les poste/but/passes/temps</title>
+    <script type="text/javascript" src="/TeamRocket/Library/js/validPlayForm.js"></script>
+</head>
+
+<body>
+
+    <?php include_once 'View/Include/header.phtml'; ?>
+
+    <?php include_once 'View/Include/nav.phtml'; ?>
+
+    <main class="container-fluid">
+
+        <form id="form" enctype="multipart/form-data" action="index.php?playerModifyRegistration" method="POST">
+
+            <legend>Formulaire de modification de poste/but/passes et temps</legend>
+
+            <div id="innerForm">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="Position">Poste joué</label>
+                        <select name="Position" class="form-control">
+                            <option value="Attaquant" <?php if ($line['Poste'] == "Attaquant") echo 'selected'; ?>>Attaquant</option>
+                            <option value="Milieu" <?php if ($line['Poste'] == "Milieu") echo 'selected'; ?>>Milieu</option>
+                            <option value="Défenseur" <?php if ($line['Poste'] == "Défenseur") echo 'selected'; ?>>Défenseur</option>
+                            <option value="Gardien" <?php if ($line['Poste'] == "Gardien") echo 'selected'; ?>>Gardien</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="Goal">But marqués <span class="star">*</span></label>
+                        <input type="number" value="<?= $line['But_marque_par_match']; ?>" name="Goal" id="Goal" class="form-control" min="0" max="99" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="Assist">Passes décisives <span class="star">*</span></label>
+                        <input type="number" value="<?= $line['Passe_decisive_par_match']; ?>" name="Assist" id="Assist" class="form-control" min="0" max="99" required>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="PlayTime">Temps joué <span class="star">*</span></label>
+                        <input type="time" name="PlayTime" value="<?= $line['Temps_joue_par_match']; ?>" id="PlayTime" class="form-control" max="01:15" required>
+                    </div>
+                </div>
+
+                <input type="hidden" name="IdPlayer" value="<?= $line['Id_joueur'] ?>" />
+                <input type="hidden" name="IdMatch" value="<?= $line['Id_match'] ?>" />
+                <input type="hidden" name="IdRivalteam" value="<?= $line['Id_equipe_adverse'] ?>" />
+
+                <div class="form-group text-center">
+                    <p>les champs <span class="star">*</span> sont obligatoires</p>
+                    <?php if (isset($_SESSION['error'])) : ?>
+                        <p class="error">Attention : <?php echo $_SESSION['error'];  ?></p>
+                        <?php $_SESSION['error'] = null;  ?>
+                    <?php endif ?>
+                    <p class="errorField"></p>
+                </div>
+
+                <div class="form-group text-center">
+                    <div id="valiForm">
+                        <input type="submit" value="Modifier" class="btn btn-primary buttonCustom">
+                        <a href="index.php?playerRegistration" class="btn btn-primary buttonCustom">Retour</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </main>
+
+    <?php include_once 'View/Include/footer.phtml'; ?>
+
+</body>
+
+</html>

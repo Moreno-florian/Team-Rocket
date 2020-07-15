@@ -1,0 +1,55 @@
+<header class="container-fluid">
+
+    <div>
+        <a href="index.php"><img id="logo" src="/TeamRocket/Img/Src/logo.png" alt="Accueil"></a>
+    </div>
+
+    <div id="myProfil">
+        <?php if (isset($_SESSION['UserID'])) : ?>
+            <div class="content">
+                <img id="myProfilePicture" src="<?php echo ($_SESSION['Picture']); ?>" alt="Erreur de chargement de la photo" />
+                <h1>Bonjour <?php echo ($_SESSION['FirstName']); ?> <?php echo ($_SESSION['LastName']); ?></h1>
+            </div>
+        <?php else : ?>
+            <h1>Bienvenue sur le site de<br>la Team Rocket </h1>
+        <?php endif; ?>
+    </div>
+
+    <div>
+        <?php if (isset($_SESSION['UserID'])) : ?>
+            <form action="index.php?modifyAccount" method="POST">
+                <fieldset class="gestAccount">
+                    <legend>Mon compte</legend>
+                    <input type="hidden" name="userId" value="<?php echo ($_SESSION['UserID']); ?>" />
+                        <div class="form-group text-center">
+                            <input type="submit" value="Modifier le Compte" class="btn btn-light btn-sm btnWidth2" />
+                        </div>
+                        <div class="form-group text-center">
+                            <a href="index.php?accountLogout" class="btn btn-light btn-sm btnWidth2">Déconnexion</a>
+                        </div>
+                </fieldset>
+            </form>
+        <?php else : ?>
+            <form action="index.php?accountConnection" method="POST">
+
+                <div class="form-group">
+                    <input type="text" name="Pseudo" id="Pseudo" class="Pseudo" class="form-control" placeholder="Pseudo" required>
+                </div>
+                <div class="form-group">
+                    <input type="Password" name="Password" id="Password" class="Password" class="form-control" placeholder="Mot de passe" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Connexion" class="btn btn-light btn-sm btnWidth">
+                    <a href="index.php?createAccount"class="btn btn-light btn-sm btnWidth">Inscription</a>
+                </div>
+
+                <?php if (isset($_SESSION['error'])) : ?>
+                    <p class="error"> <?php echo $_SESSION['error'];  ?></p>
+                    <?php $_SESSION['error'] = null;  ?></p>
+                <?php endif; ?>
+            </form>
+        <?php endif; ?>
+    </div>
+
+</header>
